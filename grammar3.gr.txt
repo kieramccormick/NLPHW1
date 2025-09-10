@@ -1,0 +1,95 @@
+# Symbols in the grammar are case-sensitive.
+# 
+# This grammar uses a convention that
+#    - terminals are usually lowercase  (president)
+#    - preterminals are capitalized     (Noun)
+#    - other nonterminals are all-caps  (NP)
+# 
+# This convention just makes grammars more readable to humans.  Thus:
+#
+#    - When *you* are writing grammars in questions 3 and 6, you should 
+#      follow this convention unless you have a good reason not to.  
+#
+#    - But your *program* should still work with grammars that don't
+#      follow this convention.  So how can your program reliably tell
+#      the difference between terminal and nonterminal symbols?  If
+#      there is at least one rule for rewriting a symbol, then that
+#      symbol is a nonterminal and should be rewritten.
+#######################
+
+# Rules for creating full sentences.
+
+3	ROOT	S .
+1	ROOT	S !
+0.8     ROOT	is it true that S ?    
+# mixing terminals and nonterminals is ok.
+
+# The basic grammar rules.  Here's what the abbreviations stand for:
+#    S  = sentence
+#    NP = noun phrase
+#    VP = verb phrase
+#    PP = prepositional phrase
+#    Det = determiner (sometimes called "article")
+#    Prep = preposition
+#    Adj = adjective
+#    SSub = subordinate clause
+#    VTrans = transitive verb
+#    VInt = intransitive verb
+#    PNoun = proper noun
+
+3	S	NP VP
+1	S	SSub VP
+
+2	VP	VTrans NP
+2	VP	VInt
+
+3	NP	Det Noun
+1	NP	NP and NP
+2	NP	PNoun
+
+1	SSub	that S
+
+0.5	PP	Prep NP
+
+2.5	Noun	Adj Noun
+
+# Vocabulary.  Your program can see that "ate" is a terminal
+# symbol because there exists no rule for rewriting it.
+# Any symbol that can rewrite as a terminal (or a string of 
+# terminals, like "chief of staff") is called a "preterminal."  Notice 
+# that a preterminal is a special kind of nonterminal.
+
+3	VTrans	ate
+2	VTrans	wanted
+1	VTrans	kissed	
+3	VTrans	understood
+0.5	VTrans	pickled
+1	VTrans 	perplexed
+2	VTrans	thought
+
+2	VInt	sighed
+2	VInt	worked
+
+3	Det	the
+1	Det	a
+1	Det	every
+
+3	Noun	president
+3	Noun	sandwich
+1	Noun	pickle
+0.8     Noun   	chief of staff
+2	Noun	floor
+2	Noun	desk
+3	PNoun	Sally
+2	PNoun	it
+
+2	Adj	fine
+1	Adj	very
+2	Adj	delicious
+1	Adj	perplexed
+0.5     Adj     pickled
+
+3	Prep	with
+3	Prep	on
+1	Prep	under
+2       Prep    in

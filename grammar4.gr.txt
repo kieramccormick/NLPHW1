@@ -1,0 +1,123 @@
+# Symbols in the grammar are case-sensitive.
+# 
+# This grammar uses a convention that
+#    - terminals are usually lowercase  (president)
+#    - preterminals are capitalized     (Noun)
+#    - other nonterminals are all-caps  (NP)
+# 
+# This convention just makes grammars more readable to humans.  Thus:
+#
+#    - When *you* are writing grammars in questions 3 and 6, you should 
+#      follow this convention unless you have a good reason not to.  
+#
+#    - But your *program* should still work with grammars that don't
+#      follow this convention.  So how can your program reliably tell
+#      the difference between terminal and nonterminal symbols?  If
+#      there is at least one rule for rewriting a symbol, then that
+#      symbol is a nonterminal and should be rewritten.
+#######################
+
+# Rules for creating full sentences.
+
+3	ROOT	S .
+1	ROOT	S !
+0.8     ROOT	is it true that S ?    
+# mixing terminals and nonterminals is ok.
+
+# The basic grammar rules.  Here's what the abbreviations stand for:
+#    S  = sentence
+#    NPSing = singular noun phrase
+#    NPPlur = plural noun phrase
+#    VPSing = singular verb phrase
+#    VPPlur = plural verb phrase
+#    PP = prepositional phrase
+#    DetSing = singular determiner (sometimes called "article")
+#    DetPlur = plural determiner (sometimes called "article")
+#    RelClause = relative clause
+#    Prep = preposition
+#    Adj = adjective
+#    VerbSing = singular verb
+#    VerbPlur = plural verb
+#    SSub = subordinate clause
+
+4	S	NPSing VPSing
+4	S	NPPlur VPPlur
+
+3	VPSing	VerbSing NPSing
+3	VPSing	VerbSing NPPlur
+3	VPPlur	VerbPlur NPSing
+3	VPPlur	VerbPlur NPPlur
+
+4	NPSing	DetSing NounSing
+3	NPSing	DetSing Adj NounSing
+1	NPSing	DetSing Adj Adj NounSing
+
+0.5	NPSing	DetSing NounSing RelClause
+0.5	NPSing	DetSing Adj NounSing RelClause
+
+4	NPPlur	DetPlur NounPlur
+3	NPPlur	DetPlur Adj NounPlur
+1	NPPlur	DetPlur Adj Adj NounPlur
+2	NPPlur	NPSing and NPSing
+
+0.5	NPPlur	DetPlur NounPlur RelClause
+0.3	NPPlur	DetPlur Adj NounPlur RelClause
+
+1	RelClause	that VerbSing NPSing
+1	RelClause	that VerbSing NPPlur
+1	RelClause	that VerbPlur NPSing
+1	RelClause	that VerbPlur NPPlur
+
+1	RelClause	that NPSing VerbSing
+1	RelClause	that NPPlur VerbPlur
+
+0.3	RelClause	that NPSing VerbSing SSub
+0.3	RelClause	that NPPlur VerbPlur SSub
+
+1	SSub	that S
+
+0.5	PP	Prep NPSing
+0.5	PP	Prep NPPlur
+
+# Vocabulary.  Your program can see that "ate" is a terminal
+# symbol because there exists no rule for rewriting it.
+# Any symbol that can rewrite as a terminal (or a string of 
+# terminals, like "chief of staff") is called a "preterminal."  Notice 
+# that a preterminal is a special kind of nonterminal.
+
+3	VerbSing	chooses
+3	VerbSing	eats
+2	VerbSing	wants
+1	VerbSing 	kisses
+3	VerbPlur	choose
+3	VerbPlur	eat
+2 	VerbPlur	want
+1	VerbPlur	kiss
+
+2	DetSing	the
+3	DetPlur	the
+1	DetSing	a
+1	DetSing	every
+1	DetPlur	all
+
+3	NounSing	president
+3	NounSing	sandwich
+1	NounSing	desk
+0.8     NounSing   	chief of staff
+2	NounSing	Sally
+2	NounPlur	sandwiches	
+2	NounPlur	desks
+3	NounPlur	citizens
+2	NounPlur	books
+2	NounPlur	Sally
+
+2	Adj	fine
+1	Adj	very
+2	Adj	delicious
+1	Adj	perplexed
+0.5     Adj     pickled
+
+3	Prep	with
+3	Prep	on
+1	Prep	under
+2       Prep    in
