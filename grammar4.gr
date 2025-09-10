@@ -38,7 +38,6 @@
 #    Adj = adjective
 #    VerbSing = singular verb
 #    VerbPlur = plural verb
-#    VerbPast = past tense verb
 #    SSub = subordinate clause
 
 4	S	NPSing VPSing
@@ -48,11 +47,6 @@
 3	VPSing	VerbSing NPPlur
 3	VPPlur	VerbPlur NPSing
 3	VPPlur	VerbPlur NPPlur
-
-3	VPSing	VerbPast NPSing
-3	VPSing	VerbPast NPPlur
-3	VPPlur	VerbPast NPSing
-3	VPPlur	VerbPast NPPlur
 
 4	NPSing	DetSing NounSing
 3	NPSing	DetSing Adj NounSing
@@ -74,19 +68,11 @@
 1	RelClause	that VerbPlur NPSing
 1	RelClause	that VerbPlur NPPlur
 
-1	RelClause	that VerbPast NPSing
-1	RelClause	that VerbPast NPPlur
-
 1	RelClause	that NPSing VerbSing
 1	RelClause	that NPPlur VerbPlur
 
-1	RelClause	that NPSing VerbPast
-1	RelClause	that NPPlur VerbPast
-
 0.3	RelClause	that NPSing VerbSing SSub
 0.3	RelClause	that NPPlur VerbPlur SSub
-
-0.3	RelClause	that NPSing VerbPast SSub
 
 1	SSub	that S
 
@@ -105,13 +91,8 @@
 1	VerbSing 	kisses
 3	VerbPlur	choose
 3	VerbPlur	eat
-2 VerbPlur	want
+2 	VerbPlur	want
 1	VerbPlur	kiss
-
-3	VerbPast	ate
-2	VerbPast	chose
-1	VerbPast	kissed
-2	VerbPast	thought
 
 2	DetSing	the
 3	DetPlur	the
@@ -119,24 +100,24 @@
 1	DetSing	every
 1	DetPlur	all
 
-3	      NounSing	president
-3	      NounSing	sandwich
-1	      NounSing	desk
+3	NounSing	president
+3	NounSing	sandwich
+1	NounSing	desk
 0.8     NounSing   	chief of staff
-2	      NounSing	Sally
-2	      NounPlur	sandwiches	
-2	      NounPlur	desks
-3	      NounPlur	citizens
-2	      NounPlur	books
-2	      NounPlur	Sally
+2	NounSing	Sally
+2	NounPlur	sandwiches	
+2	NounPlur	desks
+3	NounPlur	citizens
+2	NounPlur	books
+2	NounPlur	Sally
 
-2	      Adj	fine
-1	      Adj	very
-2	      Adj	delicious
-1	      Adj	perplexed
+2	Adj	fine
+1	Adj	very
+2	Adj	delicious
+1	Adj	perplexed
 0.5     Adj     pickled
 
 3	Prep	with
 3	Prep	on
 1	Prep	under
-2 Prep  in
+2 Prep    in
